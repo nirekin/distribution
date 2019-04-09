@@ -12,3 +12,7 @@ ekara:
     ek-swarm:
       repository: ekara-platform/swarm-orchestrator
       ref: master
+
+stacks:
+  ek-core:
+    component: ek-core
