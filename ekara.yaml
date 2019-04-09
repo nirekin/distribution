@@ -1,12 +1,14 @@
 ekara:
   base: https://github.com/ekara-platform
   components:
-    aws:
+    ek-core:
+      repository: nirekin/core-stack
+    ek-aws:
       repository: ekara-platform/aws-provider
       ref: master
-    openstack:
+    ek-openstack:
       repository: ekara-platform/openstack-provider
       ref: master
-    swarm:
+    ek-swarm:
       repository: ekara-platform/swarm-orchestrator
       ref: master

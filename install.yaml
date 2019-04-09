@@ -1,0 +1,40 @@
+---
+- name: Docker-Compose Deployment
+  hosts:  all
+  run_once: true
+
+  tasks:
+
+    #- name: Add docker_stack modules
+    #become: true
+    #pip:
+    #name:
+    #- jsondiff==1.1.2
+    #- boto3==1.9.64
+    #- boto==2.49.0
+    #state: present
+
+    - name: 'Check compose path is well defined'
+      assert:
+        that:
+          - compose_path is defined
+
+    - name: 'Prepare compose location'
+      become: true
+      file:
+        path: /var/lib/ekara
+        state: directory
+        mode: 0777
+
+    - name: 'Send compose on target'
+      template:
+        src: "{{compose_path}}/docker-compose.yml"
+        dest: /var/lib/ekara/docker-compose.yml
+
+
+    - name: 'Stack deployment'
+      docker_stack:
+        state: present
+        name: stack-core
+        compose:
+          - "/var/lib/ekara/docker-compose.yml"
