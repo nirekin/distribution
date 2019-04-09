@@ -1,8 +1,8 @@
 ekara:
-  base: https://github.com/ekara-platform
   components:
     ek-core:
       repository: nirekin/core-stack
+      ref: master
     ek-aws:
       repository: ekara-platform/aws-provider
       ref: master
