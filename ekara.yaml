@@ -1,7 +1,7 @@
 ekara:
   components:
     ek-core:
-      repository: nirekin/core-stack
+      repository: ekara-platform/core-stack
       ref: master
     ek-aws:
       repository: ekara-platform/aws-provider
