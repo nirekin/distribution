@@ -5,15 +5,6 @@
 
   tasks:
 
-    #- name: Add docker_stack modules
-    #become: true
-    #pip:
-    #name:
-    #- jsondiff==1.1.2
-    #- boto3==1.9.64
-    #- boto==2.49.0
-    #state: present
-
     - name: 'Check compose path is well defined'
       assert:
         that:
