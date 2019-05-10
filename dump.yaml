@@ -1,0 +1,52 @@
+ekara:
+  components:
+    ek-core:
+      repository: ekara-platform/core-stack
+    ek-aws:
+      repository: ekara-platform/aws-provider
+    ek-openstack:
+      repository: ekara-platform/openstack-provider
+    ek-swarm:
+      repository: ekara-platform/swarm-orchestrator
+
+providers:
+  ek-aws:
+    component: ek-aws
+    params:
+      security_groups:
+        - name: ek-ssh
+          rules:
+            - proto: tcp
+              ports:
+                - 22
+              cidr_ip: 0.0.0.0/0
+              rule_desc: Node SSH access
+        - name: ek-swarm
+          rules:
+            - proto: tcp
+              ports:
+                - 2377
+              cidr_ip: 0.0.0.0/0
+              rule_desc: Swarm cluster management communications
+            - proto: tcp
+              ports:
+                - 7946
+              cidr_ip: 0.0.0.0/0
+              rule_desc: Swarm communication among nodes
+            - proto: udp
+              ports:
+                - 7946
+              cidr_ip: 0.0.0.0/0
+              rule_desc: Swarm communication among nodes
+            - proto: udp
+              ports:
+                - 4789
+              cidr_ip: 0.0.0.0/0
+              rule_desc: Swarm overlay network traffic
+
+orchestrator:
+  component: ek-swarm
+
+stacks:
+  ek-core:
+    component: ek-core
