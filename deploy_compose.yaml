@@ -19,7 +19,7 @@
 
     - name: 'Send compose on target'
       template:
-        src: "{{compose_path}}/docker-compose.yml"
+        src: "{{compose_path}}"
         dest: /var/lib/ekara/docker-compose.yml
 
 
