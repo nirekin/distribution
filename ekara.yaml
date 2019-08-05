@@ -13,15 +13,15 @@ providers:
   ek-aws:
     component: ek-aws
     params:
-      security_groups:
-        - name: ek-ssh
+      securityGroups:
+        ek-ssh:
           rules:
             - proto: tcp
               ports:
                 - 22
               cidr_ip: 0.0.0.0/0
               rule_desc: Node SSH access
-        - name: ek-swarm
+        ek-swarm:
           rules:
             - proto: tcp
               ports:
