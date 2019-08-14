@@ -1,31 +1,30 @@
 ---
 - name: Docker-Compose Deployment
-  hosts:  all
+  hosts: all
   run_once: true
 
   tasks:
+  - name: 'Check compose_path and stack_name parameters'
+    assert:
+      that: 
+        - compose_path is defined
+        - stack_name is defined
 
-    - name: 'Check compose path is well defined'
-      assert:
-        that:
-          - compose_path is defined
+  - name: 'Ensure destination directory exists'
+    become: true
+    file:
+      path: /var/lib/ekara
+      state: directory
+      mode: 0777
 
-    - name: 'Prepare compose location'
-      become: true
-      file:
-        path: /var/lib/ekara
-        state: directory
-        mode: 0777
-
-    - name: 'Send compose on target'
-      template:
-        src: "{{compose_path}}"
-        dest: /var/lib/ekara/docker-compose.yml
+  - name: 'Send compose on target host'
+    template:
+      src: "{{ compose_path }}"
+      dest: /var/lib/ekara/docker-compose.yml
 
 
-    - name: 'Stack deployment'
-      docker_stack:
-        state: present
-        name: stack-core
-        compose:
-          - "/var/lib/ekara/docker-compose.yml"
+  - name: 'Stack deployment'
+    docker_stack:
+      state: present
+      name: "{{ stack_name }}"
+      compose: /var/lib/ekara/docker-compose.yml
