@@ -11,7 +11,7 @@
         - stack_name is defined
 
   - set_fact:
-      ek_stack_dir: "ek-{{ stack_name }}-{{ lookup('pipe','date') | to_uuid }}"
+      ek_stack_dir: "/tmp/ek-{{ stack_name }}-{{ lookup('pipe','date') | to_uuid }}"
 
   - name: "Deploying {{ stack_name }} stack"
     block:
@@ -37,6 +37,7 @@
 
     always:
     - name: "Purge temporary directory"
+      become: true
       file:
         path: "{{ ek_stack_dir }}"
         state: absent
