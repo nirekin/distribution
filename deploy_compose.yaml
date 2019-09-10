@@ -16,15 +16,13 @@
   - name: "Deploying {{ stack_name }} stack"
     block:
     - name: "Ensure that temporary directory {{ ek_stack_dir }} exists"
-      become: true
       file:
         path: "{{ ek_stack_dir }}"
         state: directory
         mode: 0777
 
     - name: "Sending component files on a Docker Swarm manager"
-      become: true
-      template:
+      copy:
         src: "{{ component_path }}/"
         dest: "{{ ek_stack_dir }}/"
 
@@ -37,7 +35,6 @@
 
     always:
     - name: "Purge temporary directory"
-      become: true
       file:
         path: "{{ ek_stack_dir }}"
         state: absent
