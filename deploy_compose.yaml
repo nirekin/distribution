@@ -1,31 +1,42 @@
 ---
-- name: Docker-Compose Deployment
-  hosts: all
+- hosts: ek_role_manager
   run_once: true
 
   tasks:
-  - name: 'Check compose_path and stack_name parameters'
+  - name: 'Checking component_path, compose_path and stack_name parameters'
     assert:
       that: 
+        - component_path is defined
         - compose_path is defined
         - stack_name is defined
 
-  - name: 'Ensure destination directory exists'
-    become: true
-    file:
-      path: /var/lib/ekara
-      state: directory
-      mode: 0777
+  - set_fact:
+      ek_stack_dir: "ek-{{ stack_name }}-{{ lookup('pipe','date') | to_uuid }}"
 
-  - name: 'Send compose on target host'
-    become: true
-    template:
-      src: "{{ compose_path }}"
-      dest: /var/lib/ekara/docker-compose.yml
+  - name: "Deploying {{ stack_name }} stack"
+    block:
+    - name: "Ensure that temporary directory {{ ek_stack_dir }} exists"
+      become: true
+      file:
+        path: "{{ ek_stack_dir }}"
+        state: directory
+        mode: 0777
 
-  - name: 'Stack deployment'
-    become: true
-    docker_stack:
-      state: present
-      name: "{{ stack_name }}"
-      compose: /var/lib/ekara/docker-compose.yml
+    - name: "Sending component files on a Docker Swarm manager"
+      become: true
+      template:
+        src: "{{ component_path }}/"
+        dest: "{{ ek_stack_dir }}/"
+
+    - name: "Executing stack deploy"
+      become: true
+      docker_stack:
+        state: present
+        name: "{{ stack_name }}"
+        compose: "{{ ek_stack_dir }}/{{ compose_path }}"
+
+    always:
+    - name: "Purge temporary directory"
+      file:
+        path: "{{ ek_stack_dir }}"
+        state: absent
