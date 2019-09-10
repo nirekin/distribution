@@ -18,12 +18,13 @@
       mode: 0777
 
   - name: 'Send compose on target host'
+    become: true
     template:
       src: "{{ compose_path }}"
       dest: /var/lib/ekara/docker-compose.yml
 
-
   - name: 'Stack deployment'
+    become: true
     docker_stack:
       state: present
       name: "{{ stack_name }}"
