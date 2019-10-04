@@ -1,13 +1,11 @@
 ekara:
   components:
-    ek-core:
-      repository: ekara-platform/core-stack
     ek-aws:
       repository: ekara-platform/aws-provider
-    ek-openstack:
-      repository: ekara-platform/openstack-provider
+      ref: v1.0.0
     ek-swarm:
       repository: ekara-platform/swarm-orchestrator
+      ref: v1.0.0
 
 providers:
   ek-aws:
@@ -46,7 +44,3 @@ providers:
 
 orchestrator:
   component: ek-swarm
-
-stacks:
-  ek-core:
-    component: ek-core
