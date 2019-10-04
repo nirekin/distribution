@@ -7,6 +7,9 @@ ekara:
     ek-swarm:
       repository: ekara-platform/swarm-orchestrator
       ref: v1.0.0
+    ek-swarm-visualizer:
+      repository: ekara-platform/swarm-visualizer-stack
+      ref: v1.0.0
 
 providers:
   ek-aws:
