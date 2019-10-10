@@ -3,10 +3,10 @@ ekara:
   components:
     ek-aws:
       repository: ekara-platform/aws-provider
-      ref: v1.0.0
+      ref: master
     ek-swarm:
       repository: ekara-platform/swarm-orchestrator
-      ref: v1.0.0
+      ref: master
     ek-swarm-visualizer:
       repository: ekara-platform/swarm-visualizer-stack
       ref: v1.0.0
