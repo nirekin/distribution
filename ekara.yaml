@@ -7,9 +7,16 @@ ekara:
     ek-swarm:
       repository: ekara-platform/swarm-orchestrator
       ref: master
+    ek-core:
+      repository: ekara-platform/core-stack
+      ref: master
     ek-swarm-visualizer:
       repository: ekara-platform/swarm-visualizer-stack
       ref: v1.0.0
+
+vars:
+  ekara:
+    path: /var/lib/ekara
 
 providers:
   ek-aws:
@@ -37,6 +44,26 @@ providers:
             - 4789
             cidr_ip: 0.0.0.0/0
             rule_desc: Swarm UDP communication
+      volumes:
+        volumes:
+          ekara:
+            ebs:
+              volume_size: 20
+              delete_on_termination: true
+            fs:
+              mount_path: {{ .Vars.ekara.path }}
 
 orchestrator:
   component: ek-swarm
+  params:
+    daemon:
+      data-root: {{ .Vars.ekara.path }}/docker
+
+stacks:
+  ek-core:
+    component: ek-core
+    params:
+      consul:
+        dataDir: {{ .Vars.ekara.path }}/consul
+      api:
+        workDir: {{ .Vars.ekara.path }}/engine
