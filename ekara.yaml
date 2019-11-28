@@ -45,13 +45,12 @@ providers:
             cidr_ip: 0.0.0.0/0
             rule_desc: Swarm UDP communication
       volumes:
-        volumes:
-          ekara:
-            ebs:
-              volume_size: 20
-              delete_on_termination: true
-            fs:
-              mount_path: {{ .Vars.ekara.path }}
+        ekara:
+          ebs:
+            volume_size: 20
+            delete_on_termination: true
+          fs:
+            mount_path: {{ .Vars.ekara.path }}
 
 orchestrator:
   component: ek-swarm
