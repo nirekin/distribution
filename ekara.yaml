@@ -5,8 +5,8 @@ ekara:
       repository: ekara-platform/aws-provider
       ref: master
     ek-swarm:
-      repository: ekara-platform/swarm-orchestrator
-      ref: master
+      repository: adrienlauer/swarm-orchestrator
+      ref: copy-support
     ek-core:
       repository: ekara-platform/core-stack
       ref: master
