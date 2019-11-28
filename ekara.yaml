@@ -48,11 +48,11 @@ providers:
               volume_size: 20
               delete_on_termination: true
             fs:
-              mount_path: {{ .Vars.ekara.path }}
+              mount_path: /var/lib/ekara
 
 orchestrator:
   component: ek-swarm
   params:
     daemon:
-      data-root: {{ .Vars.ekara.path }}/docker
+      data-root: /var/lib/ekara/docker
 
