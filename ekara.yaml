@@ -7,9 +7,6 @@ ekara:
     ek-swarm:
       repository: adrienlauer/swarm-orchestrator
       ref: copy-support
-    ek-core:
-      repository: ekara-platform/core-stack
-      ref: master
     ek-swarm-visualizer:
       repository: ekara-platform/swarm-visualizer-stack
       ref: v1.0.0
@@ -59,11 +56,3 @@ orchestrator:
     daemon:
       data-root: /var/lib/ekara/docker
 
-stacks:
-  ek-core:
-    component: ek-core
-    params:
-      consul:
-        dataDir: /var/lib/ekara/consul
-      api:
-        workDir: /var/lib/ekara/engine
