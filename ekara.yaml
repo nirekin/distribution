@@ -5,7 +5,7 @@ ekara:
       repository: ekara-platform/aws-provider
       ref: master
     ek-swarm:
-      repository: adrienlauer/swarm-orchestrator
+      repository: nirekin/swarm-orchestrator
       ref: copy-support
     ek-swarm-visualizer:
       repository: ekara-platform/swarm-visualizer-stack
