@@ -56,13 +56,13 @@ orchestrator:
   component: ek-swarm
   params:
     daemon:
-      data-root: {{ .Vars.ekara.path }}/docker
+      data-root: "{{ .Vars.ekara.path }}/docker"
 
 stacks:
   ek-core:
     component: ek-core
     params:
       consul:
-        dataDir: {{ .Vars.ekara.path }}/consul
+        dataDir: "{{ .Vars.ekara.path }}/consul"
       api:
-        workDir: {{ .Vars.ekara.path }}/engine
+        workDir: "{{ .Vars.ekara.path }}/engine"
