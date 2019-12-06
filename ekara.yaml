@@ -46,7 +46,7 @@ providers:
             volume_size: 20
             delete_on_termination: true
           fs:
-            mount_path: /var/lib/ekara
+            mount_path: {{ .Vars.ekara.path }}
 
 orchestrator:
   component: ek-swarm
