@@ -14,6 +14,12 @@ vars:
   ekara:
     path: /var/lib/ekara
 
+orchestrator:
+  component: ek-swarm
+  params:
+    daemon:
+      data-root: {{ .Vars.ekara.path2 }} docker
+
 providers:
   ek-aws:
     component: ek-aws
@@ -49,8 +55,3 @@ providers:
             mount_path: {{ .Vars.ekara.path }}
 
 
-orchestrator:
-  component: ek-swarm
-  params:
-    daemon:
-      data-root:  "{{ .Vars.ekara.path2 }}" docker
