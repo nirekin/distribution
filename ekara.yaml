@@ -48,6 +48,7 @@ providers:
           fs:
             mount_path: {{ .Vars.ekara.path }}
 
+
 orchestrator:
   component: ek-swarm
   params:
