@@ -18,7 +18,7 @@ orchestrator:
   component: ek-swarm
   params:
     daemon:
-      data-root: {{ .Vars.ekara.path2 }} docker
+      data-root: {{ .Vars.ekara.path2 }}
 
 providers:
   ek-aws:
