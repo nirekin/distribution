@@ -18,7 +18,7 @@ orchestrator:
   component: ek-swarm
   params:
     daemon:
-      data-root: {{ .Vars.ekara.path2 }}
+      data-root: {{ .Vars.ekara.path }}/docker
 
 providers:
   ek-aws:
@@ -52,6 +52,6 @@ providers:
             volume_size: 20
             delete_on_termination: true
           fs:
-            mount_path: {{ .Vars.ekara.path }}/docker
+            mount_path: {{ .Vars.ekara.path }}
 
 
