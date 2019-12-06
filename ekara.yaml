@@ -52,5 +52,5 @@ orchestrator:
   component: ek-swarm
   params:
     daemon:
-      data-root:  {{ .Vars.ekara.path }}
+      data-root:  {{ .Vars.ekara.path }}/docker
 
