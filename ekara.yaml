@@ -52,6 +52,6 @@ providers:
             volume_size: 20
             delete_on_termination: true
           fs:
-            mount_path: {{ .Vars.ekara.path }}
+            mount_path: {{ .Vars.ekara.path }}/docker
 
 
