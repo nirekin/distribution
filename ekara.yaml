@@ -54,4 +54,3 @@ orchestrator:
   params:
     daemon:
       data-root:  "{{ .Vars.ekara.path2 }}" docker
-
