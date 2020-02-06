@@ -1,17 +1,10 @@
----
 ekara:
   components:
     ek-aws:
       repository: ekara-platform/aws-provider
       ref: master
-    ek-azure:
-      repository: ekara-platform/azure-provider
-      ref: master
     ek-swarm:
       repository: ekara-platform/swarm-orchestrator
-      ref: master
-    ek-core:
-      repository: ekara-platform/core-stack
       ref: master
     ek-swarm-visualizer:
       repository: ekara-platform/swarm-visualizer-stack
@@ -54,11 +47,10 @@ providers:
             delete_on_termination: true
           fs:
             mount_path: {{ .Vars.ekara.path }}
-  ek-azure:
-    component: ek-azure
 
 orchestrator:
   component: ek-swarm
   params:
     daemon:
       data-root: "{{ .Vars.ekara.path }}/docker"
+
